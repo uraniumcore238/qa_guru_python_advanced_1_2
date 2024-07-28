@@ -10,3 +10,4 @@ sqlalchemy
 sqlmodel
 
 fastapi-pagination
+Faker~=26.0.0
