@@ -4,6 +4,7 @@ from sqlmodel import Field, SQLModel
 
 fake = Faker()
 
+
 class User(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     email: EmailStr
@@ -11,12 +12,6 @@ class User(SQLModel, table=True):
     last_name: str
     avatar: str
 
-
-# class UserCreate(BaseModel):
-#     email: EmailStr
-#     first_name: str
-#     last_name: str
-#     avatar: HttpUrl
 
 class UserCreate(BaseModel):
     email: EmailStr = Field(default=fake.email())
@@ -34,12 +29,7 @@ class UserCreateResponse(BaseModel):
 
 
 class UserUpdate(BaseModel):
-    email: EmailStr = Field(default=None)
-    first_name: str = Field(default=None)
-    last_name: str = Field(default=None)
-    avatar: HttpUrl = Field(default=None)
-
-
-class UserHeaders(BaseModel):
-    accept: str = Field(default='application/json')
-    content_type: str = Field(default='application/json')
+    email: EmailStr | None = None
+    first_name: str | None = None
+    last_name: str | None = None
+    avatar: HttpUrl | None = None
