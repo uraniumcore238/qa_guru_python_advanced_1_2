@@ -1,11 +1,7 @@
-import time
-
 import requests
 
 from http import HTTPStatus
-
 from pydantic_core import Url
-
 from app.models.User import UserCreate, UserCreateResponse
 
 
