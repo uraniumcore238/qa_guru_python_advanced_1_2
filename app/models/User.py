@@ -1,6 +1,8 @@
-
+from faker import Faker
 from pydantic import BaseModel, EmailStr, HttpUrl
 from sqlmodel import Field, SQLModel
+
+fake = Faker()
 
 
 class User(SQLModel, table=True):
@@ -12,10 +14,18 @@ class User(SQLModel, table=True):
 
 
 class UserCreate(BaseModel):
-    email: EmailStr
+    email: EmailStr = Field(default=fake.email())
+    first_name: str = Field(default=fake.first_name())
+    last_name: str = Field(default=fake.last_name())
+    avatar: HttpUrl = Field(default=fake.url())
+
+
+class UserCreateResponse(BaseModel):
     first_name: str
-    last_name: str
     avatar: HttpUrl
+    last_name: str
+    id: int
+    email: EmailStr
 
 
 class UserUpdate(BaseModel):
