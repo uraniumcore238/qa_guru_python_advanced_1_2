@@ -31,7 +31,6 @@ def fill_test_data(app_url):
     for user in test_data_users:
         response = requests.post(f"{app_url}/api/users/", json=user)
         api_users.append(response.json())
-
     user_ids = [user["id"] for user in api_users]
 
     yield user_ids
@@ -52,10 +51,9 @@ def create_new_user(app_url):
     payload = UserCreate()
     response = requests.post(f"{app_url}/api/users/", json=payload.model_dump())
     assert response.status_code == HTTPStatus.CREATED
-    new_client = response.json()
-    user = UserCreateResponse(**new_client)
-    yield user
+    user = UserCreateResponse.model_validate(response.json())
 
+    yield user
     requests.delete(f"{app_url}/api/users/{user.id}")
 
 

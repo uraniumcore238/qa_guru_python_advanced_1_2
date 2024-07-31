@@ -10,7 +10,7 @@ def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
 
-def check_availability() -> bool | False:
+def check_availability() -> bool:
     try:
         with Session(engine) as session:
             session.execute(text("SELECT 1"))
