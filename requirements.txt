@@ -11,4 +11,3 @@ sqlmodel
 
 fastapi-pagination
 Faker~=26.0.0
-mypy~=1.11.0

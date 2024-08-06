@@ -1,3 +1,4 @@
+
 version: '3.9'
 
 services:
@@ -30,10 +31,12 @@ services:
       - db-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+
 volumes:
   db-data:

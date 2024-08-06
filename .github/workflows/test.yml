@@ -1,3 +1,4 @@
+
 on:
   pull_request:
     branches:
@@ -8,13 +9,13 @@ jobs:
     name: Test app
     runs-on: ubuntu-latest
     env:
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_USER: ci
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.10'
           cache: 'pip'
       - run: pip install --upgrade -r requirements.txt
       - run: docker compose build
